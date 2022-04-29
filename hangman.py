@@ -2,26 +2,27 @@ import os
 import random
 
 
-def schon():
-    pass # Aquí va el hangman chido
-
-
-def interfaz(word, underscores, vidas):
-    characters_of_word = [letter for letter in word]
-    characters_of_word = "".join(characters_of_word)
-    print(characters_of_word)
+def interfaz(word, underscores, vidas, lenght):
     while vidas > 0:
-        print(underscores)
-        print(f'Vidas: {vidas}')
+        for i in underscores:
+            print(i, end=' ')
+        print(f'\nVidas: {vidas}')
         eleccion = input('Type a letter: ')
         i = 0
         for letter in word:
-            if eleccion == characters_of_word[i]:
+            if eleccion == word[i]:
                 underscores[i] = eleccion
+                lenght += 1
                 vidas += 1
             i += 1
         vidas -= 1
         os.system('cls')
+        if lenght == len(word):
+            underscores = "".join(underscores)
+            print(underscores)
+            print('Congratulations!')
+            print('You´ve guessed the word')
+            break
     print('Game over.')
 
 
@@ -36,9 +37,9 @@ def worter(): #get a random word from the database
         word = words[random_number]
         word = word.replace('\n', '')
         underscores = [' _ ' for i in word]
-        #underscores = "".join(underscores)
         vidas = 5
-        interfaz(word, underscores, vidas)
+        lenght = 0
+        interfaz(word, underscores, vidas, lenght)
 
 
 def run():
