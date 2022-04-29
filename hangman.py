@@ -15,14 +15,12 @@ def interfaz(word, underscores, vidas):
         print(f'Vidas: {vidas}')
         eleccion = input('Type a letter: ')
         i = 0
-        # for letter in word:
-            # if eleccion == characters_of_word[i]:
-                #underscores[i] = eleccion
-                #underscores[i] = underscores.replace['_', eleccion]
-        underscores = [eleccion for letter in word if eleccion == characters_of_word]
+        for letter in word:
+            if eleccion == characters_of_word[i]:
+                underscores[i] = eleccion
                 vidas += 1
-            #i += 1
-        #vidas -= 1
+            i += 1
+        vidas -= 1
         os.system('cls')
     print('Game over.')
 
