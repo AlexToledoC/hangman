@@ -8,23 +8,29 @@ def interfaz(word, underscores, vidas, lenght):
             print(i, end=' ')
         print(f'\nVidas: {vidas}')
         eleccion = input('Type a letter: ')
+        if len(eleccion) != 1:
+            raise ValueError("You can only type one letter at a time.")
+        if eleccion == '0' or eleccion == '1' or eleccion == '2' or eleccion == '3' or eleccion == '4' or eleccion == '5' or eleccion == '6' or eleccion == '7' or eleccion == '8' or eleccion == '9':
+            raise ValueError("You can only type letters.")
         i = 0
-        for letter in word:
-            if eleccion == word[i]:
-                underscores[i] = eleccion
-                lenght += 1
-                vidas += 1
-            i += 1
-        vidas -= 1
-        os.system('cls')
-        if lenght == len(word):
-            underscores = "".join(underscores)
-            print(underscores)
-            print('Congratulations!')
-            print('You´ve guessed the word')
-            break
+        try:
+            for letter in word:
+                if eleccion == word[i]:
+                    underscores[i] = eleccion
+                    lenght += 1
+                    vidas += 1
+                i += 1
+            vidas -= 1
+            os.system('cls')
+            if lenght == len(word):
+                underscores = "".join(underscores)
+                print(underscores)
+                print('Congratulations!')
+                print('You´ve guessed the word')
+                break
+        except ValueError:
+            print("Oops! Something went wrong!")
     print('Game over.')
-
 
 
 def worter(): #get a random word from the database
